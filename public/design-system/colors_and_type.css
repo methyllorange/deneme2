@@ -1,0 +1,429 @@
+/* =============================================================
+   ASO-İLTEK Design System — Colors & Type
+   Palette extracted directly from the ASO-İLTEK 2025 PDF
+   (operator-stream scan across 20+ pages).
+
+   Brand is BLUE-FORWARD policy/research publication style:
+   royal blue + teal + indigo + orange accent + lavender data viz.
+   No red. No fantasy palette.
+   ============================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap');
+@import url('https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css');
+
+:root {
+  /* =========================================================
+     CORE BRAND COLORS — verbatim from PDF operator scan
+     Each hex appears in the PDF; "count" annotates frequency
+     to indicate role.
+     ========================================================= */
+
+  /* Primary — the dominant blue across covers, headers, charts */
+  --aso-blue:        #114B95;   /* count: 204 — primary brand */
+  --aso-blue-deep:   #292562;   /* count: 76 — chapter heads, deep text */
+  --aso-blue-dark:   #002F68;   /* count: 6 — extra-dark accent */
+  --aso-blue-ink:    #00091A;   /* count: 2 — near-black */
+
+  /* Secondary — the teal that pairs with blue in charts/diagrams */
+  --aso-teal:        #1394B9;   /* count: 112 — secondary brand */
+  --aso-teal-soft:   #52A5BB;   /* count: 1 — softer teal mid-tone */
+
+  /* Accent — the warm orange used for emphasis */
+  --aso-orange:      #F68B1F;   /* count: 73 — primary accent */
+  --aso-orange-warm: #F68C2A;   /* count: 8 — slight variant */
+  --aso-orange-deep: #FDB116;   /* count: 1 — amber variant */
+
+  /* Tertiary / data-viz */
+  --aso-lavender:    #9B92C6;   /* count: 40 — data viz tertiary */
+  --aso-lavender-light: #BEB8DC; /* count: 1 */
+  --aso-lavender-pale: #D1CDE7;  /* count: 2 — tints */
+  --aso-violet:      #482B73;   /* count: 1 — deeper variant */
+
+  --aso-green:       #019963;   /* count: 13 — success / positive */
+  --aso-green-deep:  #00392A;   /* count: 6 — dark green */
+
+  --aso-coral:       #D7604D;   /* count: 15 — warm red-orange */
+  --aso-red:         #B1172B;   /* count: 11 — danger / decline */
+
+  /* Neutrals */
+  --aso-black:       #000000;
+  --aso-gray-900:    #4D4D4F;   /* body text */
+  --aso-gray-700:    #6D6E71;   /* muted text */
+  --aso-gray-500:    #BCBEC0;   /* light gray */
+  --aso-gray-300:    #C1BFB7;   /* warm gray (paper grain) */
+  --aso-gray-100:    #F1F0EF;   /* off-white */
+  --aso-white:       #FFFFFF;
+
+  /* =========================================================
+     PROGRAMMATIC SCALES — derived from the primary brand colors.
+     Use these (not the raw aso-* tokens) in components so
+     light/dark tints stay consistent.
+     ========================================================= */
+
+  /* Blue scale (anchored on --aso-blue #114B95) */
+  --blue-950: #0A2E5C;
+  --blue-900: #0D3A77;
+  --blue-800: #114B95;   /* = --aso-blue */
+  --blue-700: #1A5BA8;
+  --blue-600: #2D6EBA;
+  --blue-500: #4F89CB;
+  --blue-400: #7CA6D9;
+  --blue-300: #A8C2E5;
+  --blue-200: #CFDDEF;
+  --blue-100: #E6EDF7;
+  --blue-50:  #F2F6FB;
+
+  /* Indigo scale (anchored on --aso-blue-deep #292562) */
+  --indigo-950: #0F0C2E;
+  --indigo-900: #1A1748;
+  --indigo-800: #292562;   /* = --aso-blue-deep */
+  --indigo-700: #3D397A;
+  --indigo-600: #534F92;
+  --indigo-500: #7470AC;
+  --indigo-400: #9B92C6;   /* = --aso-lavender */
+  --indigo-300: #BEB8DC;   /* = --aso-lavender-light */
+  --indigo-200: #D1CDE7;   /* = --aso-lavender-pale */
+  --indigo-100: #E6E3F2;
+  --indigo-50:  #F0EFF8;
+
+  /* Teal scale (anchored on --aso-teal #1394B9) */
+  --teal-900: #0A5670;
+  --teal-800: #0E7090;
+  --teal-700: #1394B9;   /* = --aso-teal */
+  --teal-600: #2EA5C6;
+  --teal-500: #52A5BB;   /* = --aso-teal-soft */
+  --teal-400: #7FC0D2;
+  --teal-300: #A8D5E1;
+  --teal-200: #CDE6ED;
+  --teal-100: #E6F2F6;
+
+  /* Orange scale (anchored on --aso-orange #F68B1F) */
+  --orange-900: #8A4900;
+  --orange-800: #B85E08;
+  --orange-700: #DC7615;
+  --orange-600: #F68B1F;   /* = --aso-orange */
+  --orange-500: #FDB116;   /* = --aso-orange-deep */
+  --orange-400: #F9AB55;
+  --orange-300: #FBC58A;
+  --orange-200: #FDDDB8;
+  --orange-100: #FEF1E3;
+
+  /* Gray scale (anchored on --aso-gray-* publication grays) */
+  --gray-950: #1A1A1A;
+  --gray-900: #2E2E2E;
+  --gray-800: #4D4D4F;   /* = --aso-gray-900 */
+  --gray-700: #6D6E71;   /* = --aso-gray-700 */
+  --gray-500: #9CA0A4;
+  --gray-400: #BCBEC0;   /* = --aso-gray-500 */
+  --gray-300: #C1BFB7;   /* = --aso-gray-300 */
+  --gray-200: #DCDAD3;
+  --gray-100: #F1F0EF;   /* = --aso-gray-100 */
+  --gray-50:  #F8F7F5;
+
+  /* =========================================================
+     SEMANTIC TOKENS
+     ========================================================= */
+
+  --bg:           var(--aso-white);
+  --bg-elev:      var(--gray-50);
+  --bg-band:      var(--gray-100);
+  --bg-dark:      var(--indigo-800);   /* deep indigo hero panel */
+  --bg-deepest:   var(--aso-blue-ink); /* near-black for full bleed */
+
+  --fg:           var(--gray-800);     /* body text */
+  --fg-strong:    var(--indigo-800);   /* headlines */
+  --fg-muted:     var(--gray-700);
+  --fg-subtle:    var(--gray-500);
+  --fg-on-dark:   var(--aso-white);
+
+  --primary:      var(--blue-800);     /* ASO Blue */
+  --primary-hover: var(--blue-700);
+  --primary-fg:   var(--aso-white);
+
+  --accent:       var(--orange-600);   /* ASO Orange */
+  --accent-hover: var(--orange-700);
+  --accent-fg:    var(--aso-white);
+
+  --secondary:    var(--teal-700);     /* ASO Teal */
+  --secondary-hover: var(--teal-600);
+  --secondary-fg: var(--aso-white);
+
+  --border:        var(--gray-200);
+  --border-strong: var(--gray-400);
+  --border-rule:   var(--blue-800);    /* report-style blue rules */
+
+  --link:        var(--blue-800);
+  --link-hover:  var(--orange-600);
+
+  /* Semantic */
+  --success:        var(--aso-green);
+  --success-bg:     #E2F5EC;
+  --warning:        var(--orange-600);
+  --warning-bg:     var(--orange-100);
+  --danger:         var(--aso-red);
+  --danger-bg:      #FBE5E8;
+  --info:           var(--teal-700);
+  --info-bg:        var(--teal-100);
+
+  /* =========================================================
+     GRADE COLOR RAMP — AA → FF
+     Blue → Teal → Lavender → Orange → Coral → Red
+     Anchored on actual PDF colors.
+     ========================================================= */
+  --grade-AA: var(--blue-800);
+  --grade-BA: var(--blue-600);
+  --grade-BB: var(--teal-700);
+  --grade-CB: var(--teal-500);
+  --grade-CC: var(--indigo-400);   /* lavender */
+  --grade-DC: var(--orange-500);
+  --grade-DD: var(--orange-600);
+  --grade-ED: var(--aso-coral);
+  --grade-EE: var(--aso-red);
+  --grade-FF: #7A0E1E;
+
+  /* =========================================================
+     SPACING (4-pt grid)
+     ========================================================= */
+  --s-1:  4px;   --s-2:  8px;   --s-3: 12px;
+  --s-4: 16px;   --s-5: 24px;   --s-6: 32px;
+  --s-7: 48px;   --s-8: 64px;   --s-9: 96px;
+  --s-10: 128px; --s-11: 192px;
+
+  /* =========================================================
+     RADII
+     ========================================================= */
+  --r-0:    0;
+  --r-1:    2px;
+  --r-2:    4px;
+  --r-3:    8px;
+  --r-4:    12px;
+  --r-pill: 999px;
+
+  /* =========================================================
+     SHADOWS
+     ========================================================= */
+  --shadow-0: none;
+  --shadow-1: 0 1px 2px rgba(17, 75, 149, 0.06), 0 1px 3px rgba(17, 75, 149, 0.05);
+  --shadow-2: 0 2px 4px rgba(17, 75, 149, 0.07), 0 4px 12px rgba(17, 75, 149, 0.06);
+  --shadow-card: 0 1px 3px rgba(17, 75, 149, 0.04), 0 4px 16px rgba(17, 75, 149, 0.08);
+  --shadow-deep: 0 8px 32px rgba(41, 37, 98, 0.18);
+
+  /* =========================================================
+     TYPE
+     ========================================================= */
+  /* Myriad Pro is proprietary (Adobe Fonts).
+     Stack order:
+       1. 'Myriad Pro'        (if user has Adobe Fonts kit)
+       2. 'Myriad Set Pro'    (Apple variant)
+       3. 'Source Sans 3'     (Google Fonts substitute, loaded above)
+       4. system-ui           (fallback)
+   */
+  --ff-base: 'Myriad Pro', 'Myriad Set Pro', 'Source Sans 3', 'Source Sans Pro', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Aliases for legacy references */
+  --ff-display: var(--ff-base);
+  --ff-serif:   var(--ff-base);
+  --ff-classic: var(--ff-base);
+  --ff-sans:    var(--ff-base);
+
+  --fs-xs:   11px;
+  --fs-sm:   13px;
+  --fs-base: 16px;
+  --fs-md:   18px;
+  --fs-lg:   22px;
+  --fs-xl:   28px;
+  --fs-2xl:  36px;
+  --fs-3xl:  48px;
+  --fs-4xl:  64px;
+  --fs-5xl:  88px;
+  --fs-6xl:  128px;
+
+  --lh-tight:  1.12;
+  --lh-snug:   1.32;
+  --lh-normal: 1.55;
+  --lh-relaxed: 1.7;
+
+  --tracking-tight:  -0.02em;
+  --tracking-caps:    0.12em;
+  --tracking-pcaps:   0.24em;
+
+  /* =========================================================
+     MOTION
+     ========================================================= */
+  --ease-out: cubic-bezier(0.2, 0.6, 0.2, 1);
+  --dur-1: 80ms;
+  --dur-2: 150ms;
+  --dur-3: 250ms;
+  --dur-4: 400ms;
+}
+
+/* =============================================================
+   BASE
+   ============================================================= */
+
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--ff-base);
+  font-size: var(--fs-base);
+  line-height: var(--lh-normal);
+  font-variant-numeric: lining-nums proportional-nums;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: var(--blue-100); color: var(--indigo-800); }
+
+/* =============================================================
+   TYPE CLASSES
+   Hierarchy driven by weight + size in a single family.
+   ============================================================= */
+
+.t-eyebrow {
+  font-family: var(--ff-base);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: var(--tracking-pcaps);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.t-display-xl {
+  font-family: var(--ff-base);
+  font-weight: 800;
+  font-size: var(--fs-6xl);
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  color: var(--fg-strong);
+}
+
+.t-display-l {
+  font-family: var(--ff-base);
+  font-weight: 800;
+  font-size: var(--fs-5xl);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  color: var(--fg-strong);
+}
+
+.t-h1 {
+  font-family: var(--ff-base);
+  font-weight: 800;
+  font-size: var(--fs-3xl);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--fg-strong);
+}
+
+.t-h2 {
+  font-family: var(--ff-base);
+  font-weight: 700;
+  font-size: var(--fs-2xl);
+  line-height: var(--lh-snug);
+  letter-spacing: -0.01em;
+  color: var(--fg-strong);
+}
+
+.t-h3 {
+  font-family: var(--ff-base);
+  font-weight: 600;
+  font-size: var(--fs-xl);
+  line-height: var(--lh-snug);
+  color: var(--fg-strong);
+}
+
+.t-h4 {
+  font-family: var(--ff-base);
+  font-weight: 600;
+  font-size: var(--fs-lg);
+  line-height: var(--lh-snug);
+  color: var(--fg-strong);
+}
+
+.t-lead {
+  font-family: var(--ff-base);
+  font-weight: 400;
+  font-size: var(--fs-md);
+  line-height: var(--lh-relaxed);
+  color: var(--fg-muted);
+}
+
+.t-body {
+  font-family: var(--ff-base);
+  font-weight: 400;
+  font-size: var(--fs-base);
+  line-height: var(--lh-normal);
+  color: var(--fg);
+  text-wrap: pretty;
+}
+
+.t-body-small {
+  font-family: var(--ff-base);
+  font-weight: 400;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-normal);
+  color: var(--fg-muted);
+}
+
+.t-caption {
+  font-family: var(--ff-base);
+  font-style: italic;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--accent);
+}
+
+.t-label {
+  font-family: var(--ff-base);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  letter-spacing: 0.02em;
+  color: var(--fg-strong);
+}
+
+.t-numeric {
+  font-family: var(--ff-base);
+  font-weight: 700;
+  font-feature-settings: 'lnum' 1, 'tnum' 1;
+  color: var(--fg-strong);
+}
+
+.t-tabular { font-variant-numeric: tabular-nums lining-nums; }
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--blue-800), var(--orange-600));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+h1 { font: 800 var(--fs-3xl)/var(--lh-tight) var(--ff-base); letter-spacing: var(--tracking-tight); color: var(--fg-strong); margin: 0; }
+h2 { font: 700 var(--fs-2xl)/var(--lh-snug) var(--ff-base); letter-spacing: -0.01em; color: var(--fg-strong); margin: 0; }
+h3 { font: 600 var(--fs-xl)/var(--lh-snug) var(--ff-base); color: var(--fg-strong); margin: 0; }
+h4 { font: 600 var(--fs-lg)/var(--lh-snug) var(--ff-base); color: var(--fg-strong); margin: 0; }
+p  { margin: 0; }
+
+a {
+  color: var(--link);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(17, 75, 149, 0.4);
+  transition: color var(--dur-2) var(--ease-out), text-decoration-color var(--dur-2) var(--ease-out);
+}
+a:hover {
+  color: var(--link-hover);
+  text-decoration-color: var(--accent);
+}
+
+/* =============================================================
+   RULES
+   ============================================================= */
+.rule-blue { border: 0; border-top: 3px solid var(--blue-800); margin: var(--s-6) 0; }
+.rule-orange { border: 0; border-top: 3px solid var(--orange-600); margin: var(--s-6) 0; }
+.rule-hair { border: 0; border-top: 1px solid var(--border); margin: var(--s-5) 0; }
+
+:focus-visible {
+  outline: 2px solid var(--blue-800);
+  outline-offset: 2px;
+}
