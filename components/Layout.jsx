@@ -1,10 +1,17 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import TopNav from './TopNav';
 
 const Layout = ({ children }) => {
+    const pathname = usePathname();
+    // Dashboard'un kendi tam-ekran arka planı (hub-bg) var; bu slideshow orada
+    // tamamen onun arkasında kalıp görünmüyor ama 5 katman compositing yapıyor.
+    // Açılış anındaki GPU yükünü düşürmek için dashboard'da render etmiyoruz.
+    const showSlideshow = !pathname?.startsWith('/dashboard');
     return (
         <div className="app-layout" style={{ position: 'relative', minHeight: '100vh' }}>
+            {showSlideshow && (
             <div className="dash-bg" aria-hidden="true" style={{
                 position: 'fixed',
                 inset: 0,
@@ -36,6 +43,7 @@ const Layout = ({ children }) => {
                     background: 'linear-gradient(180deg, rgba(3,7,18,0.78) 0%, rgba(3,7,18,0.86) 45%, rgba(3,7,18,0.92) 100%)',
                 }} />
             </div>
+            )}
             <style>{`
                 .dash-bg-slide {
                     animation: dash-bg-cycle 30s linear infinite;

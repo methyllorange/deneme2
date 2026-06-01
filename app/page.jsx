@@ -42,7 +42,7 @@ export default function LandingPage() {
     const [hoveredGrade, setHoveredGrade] = useState(null);
     const activeReport = REPORTS.find((r) => r.year === reportYear) ?? REPORTS[0];
 
-    const ANIM_MS = 1400;
+    const ANIM_MS = 550;
     const handleKesfet = (e) => {
         e.preventDefault();
         if (mapVisible && mapOpen) {
@@ -67,7 +67,7 @@ export default function LandingPage() {
     }, [reportOpen]);
 
     return (
-        <div style={{
+        <div className="lp-root" style={{
             position: 'relative',
             height: '100vh',
             backgroundColor: '#000',
@@ -108,26 +108,25 @@ export default function LandingPage() {
                     100% { opacity: 0; transform: translateY(-24px); }
                 }
                 .landing-topnav { animation: topnav-in 1.3s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
-                .landing-topnav.closing { animation: topnav-out 1.3s cubic-bezier(0.4, 0, 0.6, 1) both; }
+                .landing-topnav.closing { animation: topnav-out 0.5s cubic-bezier(0.4, 0, 0.6, 1) both; }
                 /* Landing'de TopNav arka planı şeffaf kalsın (diğer sayfalarda scroll'a göre) */
                 .landing-topnav header {
-                    background: rgba(6,16,29,0.35) !important;
-                    backdrop-filter: blur(16px) saturate(140%) !important;
-                    -webkit-backdrop-filter: blur(16px) saturate(140%) !important;
-                    box-shadow: 0 8px 32px rgba(0,0,0,0.28) !important;
+                    background: transparent !important;
+                    backdrop-filter: none !important;
+                    -webkit-backdrop-filter: none !important;
+                    box-shadow: none !important;
                 }
 
                 @keyframes map-box-in {
-                    0%   { opacity: 0; transform: translateX(60px) scale(0.96); filter: blur(10px); }
-                    65%  { opacity: 1; filter: blur(0); }
-                    100% { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); }
+                    0%   { opacity: 0; transform: translateX(40px); }
+                    100% { opacity: 1; transform: translateX(0); }
                 }
                 @keyframes map-box-out {
-                    0%   { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); }
-                    100% { opacity: 0; transform: translateX(60px) scale(0.96); filter: blur(10px); }
+                    0%   { opacity: 1; transform: translateX(0); }
+                    100% { opacity: 0; transform: translateX(40px); }
                 }
-                .map-box { animation: map-box-in 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
-                .map-box.closing { animation: map-box-out 1.4s cubic-bezier(0.4, 0, 0.6, 1) both; }
+                .map-box { animation: map-box-in 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both; will-change: opacity, transform; }
+                .map-box.closing { animation: map-box-out 0.5s cubic-bezier(0.4, 0, 0.6, 1) both; will-change: opacity, transform; }
 
                 @keyframes side-btn-in {
                     0%   { opacity: 0; transform: translateY(-50%) translateX(40px); }
@@ -138,7 +137,7 @@ export default function LandingPage() {
                     100% { opacity: 0; transform: translateY(-50%) translateX(40px); }
                 }
                 .side-btn { animation: side-btn-in 1.3s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
-                .side-btn.closing { animation: side-btn-out 1.3s cubic-bezier(0.4, 0, 0.6, 1) both; }
+                .side-btn.closing { animation: side-btn-out 0.5s cubic-bezier(0.4, 0, 0.6, 1) both; }
                 @keyframes hint-pulse-flow {
                     0%, 100% { transform: translateY(0); opacity: 0.85; }
                     50%      { transform: translateY(6px); opacity: 1; }
@@ -150,7 +149,7 @@ export default function LandingPage() {
                 .hub-hint-down { animation: hint-pulse-flow 1.8s ease-in-out infinite; }
                 .hub-hint-right { animation: hint-pulse-x-right 1.8s ease-in-out infinite; }
                 .side-btn.hub-hint-right { animation: side-btn-in 1.3s cubic-bezier(0.2, 0.8, 0.2, 1) both, hint-pulse-x-right 1.8s 1.3s ease-in-out infinite; }
-                .side-btn.hub-hint-right.closing { animation: side-btn-out 1.3s cubic-bezier(0.4, 0, 0.6, 1) both; }
+                .side-btn.hub-hint-right.closing { animation: side-btn-out 0.5s cubic-bezier(0.4, 0, 0.6, 1) both; }
                 .hub-hint { transition: color 0.18s ease, filter 0.18s ease; cursor: pointer; }
                 .hub-hint:hover { color: #FFB36A !important; filter: drop-shadow(0 0 10px rgba(246,139,31,0.45)); }
                 .hub-hint-down:hover { color: #93C5FD !important; filter: drop-shadow(0 0 10px rgba(96,165,250,0.5)); }
@@ -178,6 +177,17 @@ export default function LandingPage() {
                     20%  { opacity: 0.55; transform: scale(1.08); }
                     23%  { opacity: 0; }
                     100% { opacity: 0; transform: scale(1.08); }
+                }
+                /* Telefon/dar ekran: Keşfet'e basınca harita YANA değil ALTA açılsın, sayfa kaydırılabilir olsun */
+                @media (max-width: 860px) {
+                    .lp-root { height: auto !important; min-height: 100vh; overflow-y: auto !important; }
+                    .lp-main { flex-direction: column !important; align-items: stretch !important; height: auto !important; }
+                    .lp-hero { width: 100% !important; align-self: stretch !important; }
+                    .map-box.lp-mapbox { margin-top: 16px !important; min-height: 80vh; }
+                }
+                @media (max-width: 520px) {
+                    .lp-filterbar button { font-size: 12px !important; padding: 8px 6px !important; }
+                    .lp-legend span { font-size: 12px !important; }
                 }
                 .cta { transition: background 0.2s ease, background-image 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease; }
                 .cta:hover { transform: translateY(-1px); }
@@ -241,7 +251,7 @@ export default function LandingPage() {
             {/* Header: mapVisible açıkken dashboard TopNav, kapalıyken landing nav */}
             {mapVisible ? (
                 <div className={`landing-topnav ${!mapOpen ? 'closing' : ''}`} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 25 }}>
-                    <TopNav />
+                    <TopNav hideBrand />
                 </div>
             ) : (
                 <header style={{
@@ -264,7 +274,7 @@ export default function LandingPage() {
             )}
 
             {/* Hero: frosted panel solda + harita sağda */}
-            <main style={{
+            <main className="lp-main" style={{
                 position: 'relative',
                 zIndex: 10,
                 display: 'flex',
@@ -276,7 +286,7 @@ export default function LandingPage() {
                 minHeight: 0,
                 height: '100%',
             }}>
-                <div style={{
+                <div className="lp-hero" style={{
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
@@ -378,7 +388,7 @@ export default function LandingPage() {
 
                 {/* Harita kutusu — Keşfet'e basınca açılır, panel stilinde frosted glass */}
                 {mapVisible && (
-                    <div className={`map-box ${!mapOpen ? 'closing' : ''}`} style={{
+                    <div className={`map-box lp-mapbox ${!mapOpen ? 'closing' : ''}`} style={{
                         flex: 1,
                         minWidth: 0,
                         alignSelf: 'stretch',
@@ -397,11 +407,10 @@ export default function LandingPage() {
                         WebkitMaskImage: 'radial-gradient(ellipse 110% 100% at 50% 50%, #000 65%, transparent 100%)',
                     }}>
                         {/* Filter bar */}
-                        <div style={{
+                        <div className="lp-filterbar" style={{
                             alignSelf: 'center',
-                            display: 'flex',
-                            flexWrap: 'wrap',
-                            justifyContent: 'center',
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(3, 1fr)',
                             gap: 8,
                             padding: '10px 16px',
                             background: 'rgba(13, 24, 40, 0.45)',
@@ -476,11 +485,11 @@ export default function LandingPage() {
                         </div>
 
                         {/* Legend altta yatay */}
-                        <div style={{
-                            display: 'flex',
+                        <div className="lp-legend" style={{
+                            alignSelf: 'center',
+                            display: 'grid',
+                            gridTemplateColumns: 'repeat(4, 1fr)',
                             gap: 6,
-                            flexWrap: 'wrap',
-                            justifyContent: 'center',
                             flexShrink: 0,
                         }}>
                             {GRADES.map((g) => {

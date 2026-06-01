@@ -97,13 +97,13 @@ export default function HomePage() {
             flexDirection: 'column',
             position: 'relative',
             overflow: 'hidden',
-            animation: 'hub-enter 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) both',
+            animation: 'hub-enter 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both',
+            willChange: 'opacity, transform',
         }}>
             <style>{`
                 @keyframes hub-enter {
-                    0%   { opacity: 0; transform: translateY(36px) scale(0.97); filter: blur(8px); }
-                    65%  { opacity: 1; filter: blur(0); }
-                    100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+                    from { opacity: 0; transform: translateY(18px); }
+                    to   { opacity: 1; transform: translateY(0); }
                 }
                 @keyframes opacityFadeIn {
                     from { opacity: 0; }
@@ -191,12 +191,13 @@ export default function HomePage() {
                 }
                 .hub-blob {
                     position: absolute;
-                    width: 720px;
-                    height: 720px;
+                    width: 640px;
+                    height: 640px;
                     border-radius: 50%;
-                    filter: blur(100px);
+                    filter: blur(60px);
                     mix-blend-mode: screen;
-                    opacity: 0.65;
+                    opacity: 0.6;
+                    will-change: transform;
                 }
                 .hub-blob-a {
                     top: -10%; left: -10%;
@@ -281,8 +282,8 @@ export default function HomePage() {
                     background: 'rgba(13, 24, 40, 0.55)',
                     border: '1px solid rgba(255,255,255,0.10)',
                     borderRadius: 16,
-                    backdropFilter: 'blur(14px)',
-                    WebkitBackdropFilter: 'blur(14px)',
+                    backdropFilter: 'blur(10px)',
+                    WebkitBackdropFilter: 'blur(10px)',
                     boxShadow: '0 10px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.04)',
                 }}>
                     {indicators.map((ind) => {

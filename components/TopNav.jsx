@@ -40,7 +40,7 @@ const NavLink = ({ href, exact, children }) => {
     );
 };
 
-export default function TopNav() {
+export default function TopNav({ hideBrand = false }) {
     const { provinces, globalYear, setGlobalYear } = useData();
     const [isProvincesOpen, setIsProvincesOpen] = useState(false);
     const [isYearOpen, setIsYearOpen] = useState(false);
@@ -58,8 +58,8 @@ export default function TopNav() {
     }, []);
 
     const scrollProgress = Math.min(scrollY / 240, 1);
-    const baseOpacity = 1 - scrollProgress * 0.78;
-    const headerOpacity = isHovered || isProvincesOpen || isYearOpen ? 1 : baseOpacity;
+    const baseOpacity = 0.55 - scrollProgress * 0.33;
+    const headerOpacity = isHovered || isProvincesOpen || isYearOpen ? 0.72 : baseOpacity;
     const headerGlow = (isHovered || isProvincesOpen || isYearOpen) && scrollY > 40;
 
     useEffect(() => {
@@ -97,8 +97,8 @@ export default function TopNav() {
                 top: 0,
                 zIndex: 50,
                 background: `rgba(6,16,29,${headerOpacity})`,
-                backdropFilter: scrollProgress > 0 ? 'blur(14px) saturate(140%)' : 'none',
-                WebkitBackdropFilter: scrollProgress > 0 ? 'blur(14px) saturate(140%)' : 'none',
+                backdropFilter: 'blur(14px) saturate(140%)',
+                WebkitBackdropFilter: 'blur(14px) saturate(140%)',
                 boxShadow: headerGlow
                     ? '0 0 32px rgba(246,139,31,0.28), 0 2px 6px rgba(0,0,0,0.45), 0 4px 24px rgba(17,75,149,0.22)'
                     : '0 2px 4px -1px rgba(0,0,0,0.2), 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12)',
@@ -177,6 +177,7 @@ export default function TopNav() {
                 }
             `}</style>
 
+            {!hideBrand && (
             <Link href="/" style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -223,6 +224,7 @@ export default function TopNav() {
                     </span>
                 </span>
             </Link>
+            )}
 
             <nav style={{ display: 'flex', alignItems: 'center', gap: 4, flexWrap: 'nowrap', justifyContent: 'flex-end', marginLeft: 'auto' }}>
                 <NavLink href="/rankings">
