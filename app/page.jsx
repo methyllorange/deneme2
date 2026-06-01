@@ -69,9 +69,9 @@ export default function LandingPage() {
     return (
         <div className="lp-root" style={{
             position: 'relative',
-            height: '100vh',
+            minHeight: '100vh',
             backgroundColor: '#000',
-            overflow: 'hidden',
+            overflowX: 'hidden',
             color: '#fff',
             fontFamily: 'inherit',
             display: 'flex',
@@ -282,9 +282,8 @@ export default function LandingPage() {
                 justifyContent: 'flex-start',
                 gap: 24,
                 padding: '24px clamp(20px, 2vw, 36px)',
-                flex: 1,
+                flex: '1 0 auto',
                 minHeight: 0,
-                height: '100%',
             }}>
                 <div className="lp-hero" style={{
                     display: 'flex',
